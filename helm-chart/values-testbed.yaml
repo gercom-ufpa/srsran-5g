@@ -10,9 +10,9 @@ replicaCount: 1
 
 image:
   # Check https://hub.docker.com/u/softwareradiosystems for available images
-  repository: ninjab3s/srsran-5g-gnb
-  pullPolicy: IfNotPresent
-  tag: "srskit"
+  repository: muriloavlis/srsran-5g
+  pullPolicy: Always
+  tag: "latest"
 
 imagePullSecrets:
   - name: regcred

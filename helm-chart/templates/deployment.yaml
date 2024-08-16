@@ -69,6 +69,10 @@ spec:
               value: {{ .Values.config.e2.hostname }}
             - name: RIC_BIND_INTERFACE
               value: {{ .Values.config.e2.bind_interface }}
+          ports:
+            - name: gtpu
+              containerPort: 2152
+              protocol: UDP
           volumeMounts:
             - name: entrypoint
               mountPath:  /entrypoint.sh

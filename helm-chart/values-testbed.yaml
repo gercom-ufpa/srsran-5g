@@ -70,7 +70,7 @@ debugging:
 config:
   amf:
     addr: open5gs-amf-ngap.open5gs                                              # The address or hostname of the AMF.
-    bind_addr: eth0                                            # A local IP that the gNB binds to for traffic from the AMF.
+    bind_addr: 192.168.100.10                                            # A local IP that the gNB binds to for traffic from the AMF.
 
   slicing:
   - sst: 1

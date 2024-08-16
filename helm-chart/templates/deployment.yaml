@@ -54,7 +54,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          # command: [ "gnb" ]
+          command: [ "/entrypoint.sh" ]
           # args: [ "-c", "/etc/config/gnb-config.yml" ]
           env:
             - name: AMF_HOSTNAME
@@ -66,6 +66,9 @@ spec:
             - name: RIC_BIND_INTERFACE
               value: {{ .Values.config.e2.ric.bind_interface }}
           volumeMounts:
+            - name: entrypoint
+              mountPath:  /entrypoint.sh
+              subPath: entrypoint.sh
             - name: config-volume
               mountPath: /etc/config
             {{- if .Values.debugging.enabled }}

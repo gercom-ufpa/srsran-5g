@@ -17,8 +17,8 @@ image:
 imagePullSecrets:
   - name: regcred
 
-nameOverride: "srsran-project-cudu"
-fullnameOverride: "srsran-project-cudu-chart"
+nameOverride: "srsran-cudu"
+fullnameOverride: "srsran-cudu"
 
 serviceAccount:
   create: true

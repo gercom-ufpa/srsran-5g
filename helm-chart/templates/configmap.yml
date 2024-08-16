@@ -60,7 +60,7 @@ data:
     amf:
       {{- if .Values.config.amf.hostname }}
       addr: ${AMF_ADDR}
-      {{ - end }}
+      {{- end }}
       {{- if .Values.config.amf.port }}
       port: {{ .Values.config.amf.port }}
       {{- end }}

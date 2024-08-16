@@ -65,10 +65,10 @@ spec:
               value: {{ .Values.config.amf.hostname }}
             - name: AMF_BIND_INTERFACE
               value: {{ .Values.config.amf.bind_interface }}
-            - name: RIC_HOSTNAME
-              value: {{ .Values.config.e2.ric.hostname }}
-            - name: RIC_BIND_INTERFACE
-              value: {{ .Values.config.e2.ric.bind_interface }}
+            # - name: RIC_HOSTNAME
+            #   value: {{ .Values.config.e2.ric.hostname }}
+            # - name: RIC_BIND_INTERFACE
+            #   value: {{ .Values.config.e2.ric.bind_interface }}
           volumeMounts:
             - name: entrypoint
               mountPath:  /entrypoint.sh

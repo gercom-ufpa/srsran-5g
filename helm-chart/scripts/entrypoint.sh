@@ -7,7 +7,7 @@ if [[ ! -z "$AMF_HOSTNAME" ]] ; then
 fi
 
 if [[ -z "${AMF_BIND_ADDR}" ]] ; then
-    export AMF_BIND_ADDR="$(ip addr show $AMF_BIND_INTERFACE | grep -Po 'inet \K[\d.]+')"
+    export AMF_BIND_ADDR="$(ip addr show | grep $AMF_BIND_INTERFACE | grep -Po 'inet \K[\d.]+')"
 fi
 
 ip_check="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$"

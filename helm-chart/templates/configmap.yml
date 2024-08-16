@@ -11,7 +11,7 @@ kind: ConfigMap
 metadata:
   name: srsgnb-configmap
 data:
-  gnb-config.yml: |
+  gnb-template.yml: |
     {{- if .Values.config.gnb_id }}
     gnb_id: {{ .Values.config.gnb_id }}
     {{- end }}

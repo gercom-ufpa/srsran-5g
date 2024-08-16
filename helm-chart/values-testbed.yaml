@@ -70,7 +70,7 @@ debugging:
 config:
   amf:
     hostname: open5gs-amf-ngap.open5gs                                     # The address or hostname of the AMF.
-    bind_interface: eth0
+    bind_interface: eth0                                                   # A local IP that the gNB binds to for traffic from the AMF.
 
   slicing:
   - sst: 1
@@ -141,6 +141,16 @@ config:
 
   metrics:
     autostart_stdout_metrics: true   # Enable reporting metrics in stdout
+    rlc_json_enable: true              # Enable RLC metrics reporting (need to deliver measurements to E2SM_KPM service model)
+    rlc_report_period: 1000            # Set reporting period to 1s
     # enable_json_metrics: true        # Enable reporting metrics in JSON format
     # addr: 10.233.43.143              # Metrics-server IP
     # port: 55555                      # Metrics-server Port
+
+  e2:
+    enable_du_e2: false                # Enable DU E2 agent (one for each DU instance)
+    e2sm_kpm_enabled: false            # Enable KPM service module
+    e2sm_rc_enabled: false             # Enable KPM service module 
+    hostname: service-ricplt-e2term-sctp-alpha.ricplt # RIC Service (on K8s) or IP address
+    bind_interface: eth0 # A local IP that the E2 agent binds to traffic from the RIC. ONLY required if running the RIC on a separate machine.
+    port: 36421 # RIC SCTP port

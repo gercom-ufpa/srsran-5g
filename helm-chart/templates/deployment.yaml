@@ -54,8 +54,17 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          command: [ "gnb" ]
-          args: [ "-c", "/etc/config/gnb-config.yml" ]
+          # command: [ "gnb" ]
+          # args: [ "-c", "/etc/config/gnb-config.yml" ]
+          env:
+            - name: AMF_HOSTNAME
+              value: {{ .Values.config.amf.hostname }}
+            - name: AMF_BIND_INTERFACE
+              value: {{ .Values.config.amf.bind_interface }}
+            - name: RIC_HOSTNAME
+              value: {{ .Values.config.e2.ric.hostname }}
+            - name: RIC_BIND_INTERFACE
+              value: {{ .Values.config.e2.ric.bind_interface }}
           volumeMounts:
             - name: config-volume
               mountPath: /etc/config

@@ -58,14 +58,14 @@ data:
 
     {{- if .Values.config.amf }}
     amf:
-      {{- if .Values.config.amf.addr }}
-      addr: {{ .Values.config.amf.addr }}
-      {{- end }}
+      {{- if .Values.config.amf.hostname }}
+      addr: ${AMF_ADDR}
+      {{ - end }}
       {{- if .Values.config.amf.port }}
       port: {{ .Values.config.amf.port }}
       {{- end }}
-      {{- if .Values.config.amf.bind_addr }}
-      bind_addr: {{ .Values.config.amf.bind_addr }}
+      {{- if .Values.config.amf.bind_interface }}
+      bind_addr: ${AMF_BIND_ADDR}
       {{- end }}
       {{- if .Values.config.amf.n2_bind_addr }}
       n2_bind_addr: {{ .Values.config.amf.n2_bind_addr }}

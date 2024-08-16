@@ -70,7 +70,7 @@ debugging:
 config:
   amf:
     hostname: open5gs-amf-ngap.open5gs                                     # The address or hostname of the AMF.
-    bind_interface: ens1f3                                                 # A local IP that the gNB binds to for traffic from the AMF.
+    bind_interface: eth0                                                 # A local IP that the gNB binds to for traffic from the AMF.
     port: 38412                                                            # AMF service SCTP port
 
   slicing:
@@ -153,5 +153,5 @@ config:
     e2sm_kpm_enabled: false            # Enable KPM service module
     e2sm_rc_enabled: false             # Enable KPM service module 
     hostname: service-ricplt-e2term-sctp-alpha.ricplt # RIC Service (on K8s) or IP address
-    bind_interface: ens1f3 # A local IP that the E2 agent binds to traffic from the RIC. ONLY required if running the RIC on a separate machine.
+    bind_interface: eth0 # A local IP that the E2 agent binds to traffic from the RIC. ONLY required if running the RIC on a separate machine.
     port: 36421 # RIC SCTP port

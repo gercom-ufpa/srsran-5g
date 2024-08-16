@@ -32,6 +32,10 @@ spec:
       hostNetwork: true
       {{- end }}
       volumes:
+        - name: entrypoint
+          configMap:
+            name: srsgnb-configmap-entrypoint
+            defaultMode: 0777
         - name: config-volume
           configMap:
             name: srsgnb-configmap

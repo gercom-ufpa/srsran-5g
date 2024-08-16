@@ -70,7 +70,8 @@ debugging:
 config:
   amf:
     hostname: open5gs-amf-ngap.open5gs                                     # The address or hostname of the AMF.
-    bind_interface: ens1f3                                                   # A local IP that the gNB binds to for traffic from the AMF.
+    bind_interface: ens1f3                                                 # A local IP that the gNB binds to for traffic from the AMF.
+    port: 38412                                                            # AMF service SCTP port
 
   slicing:
   - sst: 1

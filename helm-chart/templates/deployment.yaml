@@ -60,8 +60,6 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           command: [ "/entrypoint.sh" ]
           # args: [ "-c", "/etc/config/gnb-config.yml" ]
-          # command: [ "/bin/bash", "-c", "--" ]
-          # args: [ "while true; do sleep 30000; done;" ]
           env:
             - name: AMF_HOSTNAME
               value: {{ .Values.config.amf.hostname }}

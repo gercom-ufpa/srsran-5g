@@ -26,4 +26,4 @@ fi
 
 envsubst < /etc/config/gnb-config.yml > /gnb-config.yml
 
-stdbuf -o0 gnb -c /gnb-config.yml
+stdbuf -o0 /opt/srsRAN_Project/target/bin/gnb -c /gnb-config.yml

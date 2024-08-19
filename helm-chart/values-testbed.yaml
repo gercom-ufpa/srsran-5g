@@ -38,7 +38,7 @@ securityContext:
   # runAsUser: 1000
 
 network:
-  hostNetwork: false
+  hostNetwork: true
 
 resources: {}
   # limits:
@@ -70,7 +70,7 @@ debugging:
 config:
   amf:
     hostname: open5gs-amf-ngap.open5gs                                     # The address or hostname of the AMF.
-    bind_interface: eth0                                                 # A local IP that the gNB binds to for traffic from the AMF.
+    bind_interface: ens2f0                                                 # A local IP that the gNB binds to for traffic from the AMF.
     port: 38412                                                            # AMF service SCTP port
 
   slicing:
@@ -103,7 +103,7 @@ config:
     enable_dl_static_compr_hdr: false                                # Configures if the compression header is present for downlink User-Plane messages (false) or not present (true).
     iq_scaling: 4.0                                                # IQ samples scaling factor applied before compression, should be a positive value smaller than 10.
     cells:
-    - network_interface: enp152s0f0                                 # Ethernet interface name used to communicate with the RU.
+    - network_interface: ens2f0                                 # Ethernet interface name used to communicate with the RU.
       ru_mac_addr: 6c:ad:ad:00:0a:8e                              # RU MAC address.
       du_mac_addr: 00:11:22:33:66:55                              # DU MAC address.
       vlan_tag_cp: 163                                              # VLAN tag value for C-Plane.
@@ -153,5 +153,5 @@ config:
     e2sm_kpm_enabled: false            # Enable KPM service module
     e2sm_rc_enabled: false             # Enable KPM service module 
     hostname: service-ricplt-e2term-sctp-alpha.ricplt # RIC Service (on K8s) or IP address
-    bind_interface: eth0 # A local IP that the E2 agent binds to traffic from the RIC. ONLY required if running the RIC on a separate machine.
+    bind_interface: ens2f0 # A local IP that the E2 agent binds to traffic from the RIC. ONLY required if running the RIC on a separate machine.
     port: 36421 # RIC SCTP port

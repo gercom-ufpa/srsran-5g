@@ -37,4 +37,8 @@ fi
 
 envsubst < /etc/config/gnb-template.yml > /etc/config/gnb.yml
 
+while true; do
+    sleep 30000;
+done
+
 stdbuf -o0 /opt/srsRAN_Project/target/bin/gnb -c /etc/config/gnb.yml

@@ -59,16 +59,26 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           command: [ "/entrypoint.sh" ]
-          # args: [ "-c", "/etc/config/gnb-config.yml" ]
+          args: [ "gnb" ]
           env:
+          {{- if .Values.config.amf.hostname }}
             - name: AMF_HOSTNAME
               value: {{ .Values.config.amf.hostname }}
+          {{- end }}
+          {{- if .Values.config.amf.bind_interface }}
             - name: AMF_BIND_INTERFACE
               value: {{ .Values.config.amf.bind_interface }}
+          {{- end }}
+          {{- if .Values.config.e2 }}
+          {{- if .Values.config.e2.hostname }}
             - name: RIC_HOSTNAME
               value: {{ .Values.config.e2.hostname }}
+          {{- end }}
+          {{- if .Values.config.e2.bind_interface }}
             - name: RIC_BIND_INTERFACE
               value: {{ .Values.config.e2.bind_interface }}
+          {{- end }}
+          {{- end }}
           ports:
             - name: gtpu
               containerPort: 2152
@@ -78,7 +88,8 @@ spec:
               mountPath:  /entrypoint.sh
               subPath: entrypoint.sh
             - name: config-volume
-              mountPath: /etc/config
+              mountPath: /etc/config/gnb-template.yml
+              subPath: gnb-template.yml
             {{- if .Values.debugging.enabled }}
             - mountPath: {{ .Values.debugging.containerPath }}
               name: srs-host-volume

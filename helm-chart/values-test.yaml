@@ -39,7 +39,7 @@ securityContext:
   # runAsUser: 1000
 
 network:
-  hostNetwork: false
+  hostNetwork: true
 
 resources:
   limits:
@@ -48,7 +48,7 @@ resources:
     # hugepages-1Gi: 2Gi
     # intel.com/intel_sriov_dpdk: 1
   requests:
-    cpu: 4
+    cpu: 3
     memory: 8Gi
     # hugepages-1Gi: 2Gi
     # intel.com/intel_sriov_dpdk: 1
@@ -70,8 +70,8 @@ debugging:
 
 config:
   amf:
-    hostname: oai-amf.oai5gcn                     # The address or hostname of the AMF.
-    bind_interface: eth0                                            # A local IP that the gNB binds to for traffic from the AMF.
+    hostname: oai-amf.oai5gcn                                       # The address or hostname of the AMF.
+    bind_interface: ens6                                            # A local IP that the gNB binds to for traffic from the AMF.
 
   # metrics:
   #   autostart_stdout_metrics: true   # Enable reporting metrics in stdout
@@ -104,7 +104,7 @@ config:
     enable_dl_static_compr_hdr: true                                # Configures if the compression header is present for downlink User-Plane messages (false) or not present (true).
     iq_scaling: 5.5                                                # IQ samples scaling factor applied before compression, should be a positive value smaller than 10.
     cells:
-    - network_interface: eth0                                 # Ethernet interface name used to communicate with the RU.
+    - network_interface: ens6                                 # Ethernet interface name used to communicate with the RU.
       ru_mac_addr: 70:b3:d5:e1:5b:06                              # RU MAC address.
       du_mac_addr: 00:01:ea:a3:42:8b                              # DU MAC address.
       vlan_tag: 5                                                 # VLAN tag value.

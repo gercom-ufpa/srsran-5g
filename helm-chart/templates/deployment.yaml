@@ -58,8 +58,10 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          command: [ "/entrypoint.sh" ]
-          args: [ "gnb" ]
+          # command: [ "/entrypoint.sh" ]
+          # args: [ "gnb" ]
+          command: [ "gnb" ]
+          args: [ "-c", "/etc/config/gnb-config.yml" ]
           env:
           {{- if .Values.config.amf.hostname }}
             - name: AMF_HOSTNAME
@@ -88,8 +90,7 @@ spec:
               mountPath:  /entrypoint.sh
               subPath: entrypoint.sh
             - name: config-volume
-              mountPath: /etc/config/gnb-template.yml
-              subPath: gnb-template.yml
+              mountPath: /etc/config
             {{- if .Values.debugging.enabled }}
             - mountPath: {{ .Values.debugging.containerPath }}
               name: srs-host-volume

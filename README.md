@@ -15,11 +15,11 @@
 
 ```sh
 cd helm-chart
-helm upgrade --install srsran-5g -n srsran . --create-namespace -f values-testbed.yaml
+helm upgrade --install srsran-cu-du -n srsran . --create-namespace -f values-testbed.yaml
 ```
 
 ## Clean up
 
 ```sh
-helm uninstall -n srsran srsran-5g && kubectl delete ns srsran
+helm uninstall -n srsran srsran-cu-du && kubectl delete ns srsran
 ```

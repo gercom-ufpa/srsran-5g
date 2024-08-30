@@ -32,10 +32,6 @@ spec:
       hostNetwork: true
       {{- end }}
       volumes:
-        - name: entrypoint
-          configMap:
-            name: srsgnb-configmap-entrypoint
-            defaultMode: 0777
         - name: config-volume
           configMap:
             name: srsgnb-configmap
@@ -58,37 +54,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          # command: [ "/entrypoint.sh" ]
-          # args: [ "gnb" ]
           command: [ "gnb" ]
           args: [ "-c", "/etc/config/gnb-config.yml" ]
-          env:
-          {{- if .Values.config.amf.hostname }}
-            - name: AMF_HOSTNAME
-              value: {{ .Values.config.amf.hostname }}
-          {{- end }}
-          {{- if .Values.config.amf.bind_interface }}
-            - name: AMF_BIND_INTERFACE
-              value: {{ .Values.config.amf.bind_interface }}
-          {{- end }}
-          {{- if .Values.config.e2 }}
-          {{- if .Values.config.e2.hostname }}
-            - name: RIC_HOSTNAME
-              value: {{ .Values.config.e2.hostname }}
-          {{- end }}
-          {{- if .Values.config.e2.bind_interface }}
-            - name: RIC_BIND_INTERFACE
-              value: {{ .Values.config.e2.bind_interface }}
-          {{- end }}
-          {{- end }}
-          ports:
-            - name: gtpu
-              containerPort: 2152
-              protocol: UDP
           volumeMounts:
-            - name: entrypoint
-              mountPath:  /entrypoint.sh
-              subPath: entrypoint.sh
             - name: config-volume
               mountPath: /etc/config
             {{- if .Values.debugging.enabled }}

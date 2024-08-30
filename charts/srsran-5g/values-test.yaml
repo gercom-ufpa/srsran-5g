@@ -10,15 +10,15 @@ replicaCount: 1
 
 image:
   # Check https://hub.docker.com/u/softwareradiosystems for available images
-  repository: muriloavlis/srsran-5g
+  repository: ninjab3s/srsran-5g-gnb
   pullPolicy: IfNotPresent
-  tag: "latest"
+  tag: "3600x-3"
 
 imagePullSecrets:
   - name: regcred
 
-nameOverride: "srsran-cudu"
-fullnameOverride: "srsran-cudu"
+nameOverride: "srsran-project-cudu"
+fullnameOverride: "srsran-project-cudu-chart"
 
 serviceAccount:
   create: true
@@ -34,26 +34,24 @@ securityContext:
   capabilities:
     add: ["SYS_NICE", "NET_ADMIN"]
   privileged: true
+  hostNetwork: true
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
 
-network:
-  hostNetwork: true
-
 resources:
   limits:
-    cpu: 8
+    cpu: 12
     memory: 16Gi
-    # hugepages-1Gi: 2Gi
+    hugepages-1Gi: 2Gi
     # intel.com/intel_sriov_dpdk: 1
   requests:
-    cpu: 3
-    memory: 8Gi
-    # hugepages-1Gi: 2Gi
+    cpu: 12
+    memory: 16Gi
+    hugepages-1Gi: 2Gi
     # intel.com/intel_sriov_dpdk: 1
-nodeSelector:
-  kubernetes.io/hostname: 5gran
+nodeSelector: {}
+  # kubernetes.io/hostname: node1
 
 tolerations: {}
   # - key: "purpose"
@@ -70,18 +68,18 @@ debugging:
 
 config:
   amf:
-    hostname: oai-amf.oai5gcn                                       # The address or hostname of the AMF.
-    bind_interface: ens6                                            # A local IP that the gNB binds to for traffic from the AMF.
+    addr: open5gs-amf-ngap.open5gs.svc.srs-k8s-lab                     # The address or hostname of the AMF.
+    bind_addr: 192.168.1.86                                            # A local IP that the gNB binds to for traffic from the AMF.
 
-  # metrics:
-  #   autostart_stdout_metrics: true   # Enable reporting metrics in stdout
-  #   enable_json_metrics: true        # Enable reporting metrics in JSON format
-  #   addr: 10.233.63.20               # Metrics-server IP
-  #   port: 55555                      # Metrics-server Port
+  metrics:
+    autostart_stdout_metrics: true   # Enable reporting metrics in stdout
+    enable_json_metrics: true        # Enable reporting metrics in JSON format
+    addr: 10.233.63.20               # Metrics-server IP
+    port: 55555                      # Metrics-server Port
 
   slicing:
     - sst: 1
-      sd: 000001
+      sd: 1
 
   ru_ofh:
     ru_bandwidth_MHz: 100                                           # RU instantaneous bandwidth.
@@ -104,7 +102,7 @@ config:
     enable_dl_static_compr_hdr: true                                # Configures if the compression header is present for downlink User-Plane messages (false) or not present (true).
     iq_scaling: 5.5                                                # IQ samples scaling factor applied before compression, should be a positive value smaller than 10.
     cells:
-    - network_interface: ens6                                 # Ethernet interface name used to communicate with the RU.
+    - network_interface: enp8s0f1                                 # Ethernet interface name used to communicate with the RU.
       ru_mac_addr: 70:b3:d5:e1:5b:06                              # RU MAC address.
       du_mac_addr: 00:01:ea:a3:42:8b                              # DU MAC address.
       vlan_tag: 5                                                 # VLAN tag value.
@@ -117,7 +115,7 @@ config:
     band: 78                                                        # The NR band.
     channel_bandwidth_MHz: 100                                      # Bandwith in MHz. Number of PRBs will be automatically derived.
     common_scs: 30                                                  # Subcarrier spacing in kHz used for data.
-    plmn: "72470"                                                   # PLMN broadcasted by the gNB.
+    plmn: "00101"                                                   # PLMN broadcasted by the gNB.
     tac: 1                                                          # Tracking area code (needs to match the core configuration).
     pci: 1                                                          # Physical cell ID.
     nof_antennas_dl: 2                                              # Downlink number of antennas.

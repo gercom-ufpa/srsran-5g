@@ -94,6 +94,8 @@ config:
     plmn: "72470" # PLMN broadcasted by the gNB.
     tac: 1 # Tracking area code (needs to match the core configuration).
     pci: 1 # Physical cell ID.
+    nof_antennas_dl: 1 # Optional UINT (1). Sets the number of antennas for downlink transmission. Supported: [1 for emulated].
+    nof_antennas_ul: 1 # Optional UINT (1). Sets the number of antennas for uplink transmission. Supported: [1 for emulated].
 
   e2:
     enable_du_e2: false # Enable DU E2 agent (one for each DU instance)

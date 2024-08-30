@@ -110,7 +110,7 @@ data:
 
     {{- if .Values.config.e2 }}
     e2:
-      {{- if .Values.config.e2.enable_du_e2 }}
+      {{- if or (eq .Values.config.e2.enable_du_e2 false) (.Values.config.e2.enable_du_e2) }}
       enable_du_e2: {{ .Values.config.e2.enable_du_e2 }}
       {{- end }}
       {{- if .Values.config.e2.addr }}
@@ -342,7 +342,7 @@ data:
 
     {{- end }}
 
-    {{- if .Values.config.ru_ofh }}
+    {{- if and (.Values.config.ru_ofh) (not .Values.config.disable_ru_ofh) }}
     ru_ofh:
       {{- if .Values.config.ru_ofh.gps_alpha }}
       gps_alpha: {{ .Values.config.ru_ofh.gps_alpha }}

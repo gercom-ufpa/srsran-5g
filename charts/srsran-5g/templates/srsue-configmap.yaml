@@ -1,0 +1,68 @@
+{{- if .Values.srsue }}  
+
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Values.srsue.name }}-configmap
+data: 
+    ue.conf: |
+        [rf]
+        freq_offset = 0
+        tx_gain = 50
+        rx_gain = 40
+        srate = 23.04e6
+        nof_antennas = 1
+        device_name = zmq
+        device_args = tx_port=tcp://*:2001,rx_port=tcp://127.0.0.1:2000,id=ue,base_srate=23.04e6
+
+        [usim]
+        mode = soft
+        algo = mil
+        opc = {{ .Values.srsue.config.usim.opc }}
+        k = {{ .Values.srsue.config.usim.k }}
+        imsi = {{ .Values.srsue.config.usim.imsi }}
+        imei = {{ .Values.srsue.config.usim.imei }}
+
+        [rat.eutra]
+        dl_earfcn = 2850
+        nof_carriers = 0
+
+        [rat.nr]
+        nof_prb = 106
+        max_nof_prb = 106
+        bands = 3
+        nof_carriers = 1
+
+        [pcap]
+        enable = none
+        mac_filename = /tmp/ue_mac.pcap
+        mac_nr_filename = /tmp/ue_mac_nr.pcap
+        nas_filename = /tmp/ue_nas.pcap
+
+        [log]
+        all_level = debug
+        phy_lib_level = none
+        all_hex_limit = 32
+        filename = /tmp/ue.log
+        file_max_size = -1
+
+        [rrc]
+        release = 15
+        ue_category = 4
+
+        [nas]
+        apn = {{ .Values.srsue.config.nas.apn }}
+        apn_protocol = {{ .Values.srsue.config.nas.apn_protocol }}
+        
+        {{- if .Values.srsue.config.slicing.enable }}
+        [slicing]
+        enable = {{ .Values.srsue.config.slicing.enable }}
+        nssai-sst = {{ .Values.srsue.config.slicing.nssai_sst }}
+        nssai-sd = {{ .Values.srsue.config.slicing.nssai_sd }}
+        {{- end }}
+
+        [gw]
+        ip_devname = tun_srsue
+        ip_netmask = 255.255.255.0
+
+{{- end }}

@@ -11,7 +11,9 @@ kind: ConfigMap
 metadata:
   name: srsgnb-configmap
 data:
-  gnb-config.yml: |
+  entrypoint.sh: |
+{{ tpl (.Files.Get "scripts/entrypoint.sh") . | indent 4 }}
+  gnb-template.yml: |
     {{- if .Values.config.gnb_id }}
     gnb_id: {{ .Values.config.gnb_id }}
     {{- end }}
@@ -59,13 +61,13 @@ data:
     {{- if .Values.config.amf }}
     amf:
       {{- if .Values.config.amf.addr }}
-      addr: {{ .Values.config.amf.addr }}
+      addr: ${AMF_ADDR}
       {{- end }}
       {{- if .Values.config.amf.port }}
       port: {{ .Values.config.amf.port }}
       {{- end }}
       {{- if .Values.config.amf.bind_addr }}
-      bind_addr: {{ .Values.config.amf.bind_addr }}
+      bind_addr: ${AMF_BIND_ADDR}
       {{- end }}
       {{- if .Values.config.amf.n2_bind_addr }}
       n2_bind_addr: {{ .Values.config.amf.n2_bind_addr }}
@@ -114,11 +116,11 @@ data:
       enable_du_e2: {{ .Values.config.e2.enable_du_e2 }}
       {{- end }}
       {{- if .Values.config.e2.addr }}
-      addr: {{ .Values.config.e2.addr }}
+      addr: ${RIC_ADDR}
       {{- end }}
       port: {{ .Values.config.e2.port }}
       {{- if .Values.config.e2.bind_addr }}
-      bind_addr: {{ .Values.config.e2.bind_addr }}
+      bind_addr: ${RIC_BIND_ADDR}
       {{- end }}
       {{- if .Values.config.e2.sctp_rto_initial }}
       sctp_rto_initial: {{ .Values.config.e2.sctp_rto_initial }}

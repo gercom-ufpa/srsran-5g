@@ -91,27 +91,59 @@ config:
     - sst: 3
       sd: 0x000001
 
+  ru_ofh:
+    t1a_max_cp_dl: 420
+    t1a_min_cp_dl: 250
+    t1a_max_cp_ul: 420
+    t1a_min_cp_ul: 250
+    t1a_max_up: 196
+    t1a_min_up: 80
+    ta4_max: 500
+    ta4_min: 25
+    is_prach_cp_enabled: true
+    ignore_ecpri_payload_size: true
+    compr_method_ul: bfp
+    compr_bitwidth_ul: 9
+    compr_method_dl: bfp
+    compr_bitwidth_dl: 9
+    compr_method_prach: bfp
+    compr_bitwidth_prach: 9
+    enable_ul_static_compr_hdr: false
+    enable_dl_static_compr_hdr: false
+    iq_scaling: 1.0
+    cells:
+      - network_interface: xxxx # Ethernet interface name used to communicate with the RU.
+        ru_mac_addr: 6c:ad:ad:xx:xx:xx # RU MAC address.
+        du_mac_addr: 80:61:5f:xx:xx:xx # DU MAC address.
+        vlan_tag_cp: 2 # VLAN tag value for CP.
+        vlan_tag_up: 2 # VLAN tag value for UP.
+        prach_port_id: [4, 5, 6, 7] # PRACH eAxC port values.
+        dl_port_id: [0, 1] # Downlink eAxC port values.
+        ul_port_id: [0, 1, 2, 3] # Uplink eAxC port values.
+
   cell_cfg:
-    dl_arfcn: 368500 # ARFCN of the downlink carrier (center frequency).
-    band: 3 # The NR band.
-    channel_bandwidth_MHz: 20 # Bandwith in MHz. Number of PRBs will be automatically derived.
-    common_scs: 15 # Subcarrier spacing in kHz used for data.
-    plmn: "72470" # PLMN broadcasted by the gNB.
-    tac: 1 # Tracking area code (needs to match the core configuration).
-    pci: 1 # Physical cell ID.
-    nof_antennas_dl: 1
+    dl_arfcn: 640000 # ARFCN of the downlink carrier (center frequency).
+    band: 78 # The NR band.
+    channel_bandwidth_MHz: 100 # Bandwith in MHz. Number of PRBs will be automatically derived.
+    common_scs: 30 # Subcarrier spacing in kHz used for data.
+    plmn: "00101" # PLMN broadcasted by the gNB.
+    tac: 7 # Tracking area code (needs to match the core configuration).
+    pci: 1
+    nof_antennas_dl: 4
     nof_antennas_ul: 1
-
-    pdcch:
-      common:
-        coreset0_index: 12 # Optional INT. Sets the CORESET 0 index. Supported: [0 - 15].
-        ss0_index: 0 # Optional UINT (0). Sets the SearchSpace#0 index. Supported: [0 - 15].
-      dedicated:
-        dci_format_0_1_and_1_1: false # Optional BOOLEAN (true). Sets whether to use non-fallback or fallback DCI format in UE SearchSpace#2. Supported: [false, true].
-        ss2_type: ue_dedicated # Optional TEXT (ue_dedicated). Sets the SearchSpace type for UE dedicated SearchSpace#2. Supported: [common, ue_dedicated].
-
     prach:
-      prach_config_index: 1 # Sets PRACH config to match what is expected by srsUE
+      prach_config_index: 159
+      prach_root_sequence_index: 1
+      zero_correlation_zone: 0
+      prach_frequency_start: 12
+    pdsch:
+      mcs_table: qam256
+    tdd_ul_dl_cfg:
+      dl_ul_tx_period: 10
+      nof_dl_slots: 7
+      nof_dl_symbols: 6
+      nof_ul_slots: 2
+      nof_ul_symbols: 0
 
   e2:
     enable_du_e2: false # Enable DU E2 agent (one for each DU instance)

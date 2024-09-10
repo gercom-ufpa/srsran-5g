@@ -78,7 +78,7 @@ config:
   amf:
     addr: 10.21.0.2 # The address or hostname of the AMF.
     bind_addr: acesso # A local IP that the gNB binds to for traffic from the AMF.
-    port: 38412
+    port: 30412
     # no_core: true
 
   disable_ru_ofh: false

@@ -112,11 +112,11 @@ config:
     enable_dl_static_compr_hdr: false
     iq_scaling: 1.0
     cells:
-      - network_interface: xxxx # Ethernet interface name used to communicate with the RU.
-        ru_mac_addr: 6c:ad:ad:xx:xx:xx # RU MAC address.
-        du_mac_addr: 80:61:5f:xx:xx:xx # DU MAC address.
-        vlan_tag_cp: 2 # VLAN tag value for CP.
-        vlan_tag_up: 2 # VLAN tag value for UP.
+      - network_interface: ens2f0 # Ethernet interface name used to communicate with the RU.
+        ru_mac_addr: 6c:ad:ad:00:0a:90 # RU MAC address.
+        du_mac_addr: 3c:ec:ef:b7:ce:68 # DU MAC address.
+        vlan_tag_cp: 163 # VLAN tag value for CP.
+        vlan_tag_up: 164 # VLAN tag value for UP.
         prach_port_id: [4, 5, 6, 7] # PRACH eAxC port values.
         dl_port_id: [0, 1, 2, 3] # Downlink eAxC port values.
         ul_port_id: [0, 1, 2, 3] # Uplink eAxC port values.

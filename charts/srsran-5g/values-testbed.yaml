@@ -118,8 +118,8 @@ config:
     e2sm_kpm_enabled: true # Enable KPM service module
     e2sm_rc_enabled: true # Enable KPM service module
     addr: 192.168.0.1 # RIC IP address or k8s service name
-    bind_addr: 192.168.0.10 # A local IP that the E2 agent binds to for traffic from the RIC. ONLY required if running the RIC on a separate machine.
-    port: 36422 # RIC port
+    bind_addr: lo # A local IP that the E2 agent binds to for traffic from the RIC. ONLY required if running the RIC on a separate machine.
+    port: 36421 # RIC port
 
   log: # Set debugging->enabled->true in order to make logs persistent. Make sure hostPath and log file path match.
     filename: /tmp/gnb.log # Path of the log file.

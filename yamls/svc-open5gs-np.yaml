@@ -6,9 +6,9 @@ metadata:
 spec:
   selector:
     app.kubernetes.io/name: amf
+  type: NodePort
   ports:
     - port: 38412
       targetPort: 38412
       nodePort: 30412
-      type: NodePort
       protocol: SCTP

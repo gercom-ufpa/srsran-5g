@@ -76,19 +76,12 @@ config:
   gnb_du_id: 0 # Optional UINT (0). Sets the gNB DU ID. Supported: [0 - 68719476735].
 
   amf:
-    addr: open5gs-amf-ngap.open5gs # The address or hostname of the AMF.
-    bind_addr: eth0 # A local IP that the gNB binds to for traffic from the AMF.
-    port: 38412
+    addr: 10.21.0.2 # The address or hostname of the AMF.
+    bind_addr: lo # A local IP that the gNB binds to for traffic from the AMF.
+    port: 30412
     # no_core: true
 
-  ru_sdr:
-    device_driver: zmq
-    device_args: tx_port=tcp://*:2000,rx_port=tcp://127.0.0.1:2001,id=srs_gnb,base_srate=23.04e6
-    srate: 23.04
-    tx_gain: 75
-    rx_gain: 75
-
-  disable_ru_ofh: true
+  disable_ru_ofh: false
 
   slicing:
     - sst: 1
@@ -96,8 +89,6 @@ config:
     - sst: 2
       sd: 0x000001
     - sst: 3
-      sd: 0x000001
-    - sst: 4
       sd: 0x000001
 
   cell_cfg:

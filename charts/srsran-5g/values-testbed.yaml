@@ -126,8 +126,8 @@ config:
     band: 78 # The NR band.
     channel_bandwidth_MHz: 100 # Bandwith in MHz. Number of PRBs will be automatically derived.
     common_scs: 30 # Subcarrier spacing in kHz used for data.
-    plmn: "00101" # PLMN broadcasted by the gNB.
-    tac: 7 # Tracking area code (needs to match the core configuration).
+    plmn: "72470" # PLMN broadcasted by the gNB.
+    tac: 1 # Tracking area code (needs to match the core configuration).
     pci: 1
     nof_antennas_dl: 4
     nof_antennas_ul: 1

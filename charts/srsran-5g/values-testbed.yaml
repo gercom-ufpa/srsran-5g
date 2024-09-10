@@ -113,7 +113,7 @@ config:
     iq_scaling: 1.0
     cells:
       - network_interface: ens2f0 # Ethernet interface name used to communicate with the RU.
-        ru_mac_addr: 6c:ad:ad:00:0a:90 # RU MAC address.
+        ru_mac_addr: 6c:ad:ad:00:0a:8e # RU MAC address.
         du_mac_addr: 3c:ec:ef:b7:ce:68 # DU MAC address.
         vlan_tag_cp: 163 # VLAN tag value for CP.
         vlan_tag_up: 164 # VLAN tag value for UP.

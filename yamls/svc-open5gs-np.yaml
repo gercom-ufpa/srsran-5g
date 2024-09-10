@@ -10,4 +10,5 @@ spec:
     - port: 38412
       targetPort: 38412
       nodePort: 30412
+      type: NodePort
       protocol: SCTP

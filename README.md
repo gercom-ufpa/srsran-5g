@@ -13,9 +13,23 @@
 
 ### Deploy a monolitic gNodeB
 
+- Docker
+
+```sh
+docker container run -d --name srsran-gnb -v <your-config>:/usr/local/srsran/configs/gnb_zmq.yml muriloavlis/srsran-5g:zmq_latest
+```
+
+- Helm
+
 ```sh
 cd charts/srsran-5g
 helm upgrade --install srsran-gnb -n srsran --create-namespace . -f <your-values>
+```
+
+### Deploy a SRSUE
+
+```sh
+docker container run -d --name srsue -v <your-config>:/etc/srsue/ue_zmq.conf muriloavlis/srsran-ue:latest
 ```
 
 ### Clean up

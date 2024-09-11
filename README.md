@@ -34,4 +34,4 @@ helm uninstall -n srsran srsran-gnb && kubectl delete ns srsran
 
 ## Problems To Be Investigated
 
-- `SRSUE doesn't work with OAI-5G CN`: the tunnel interface isn't created during the GTP-U session establishment process; 
+- `SRSUE doesn't work with OAI-5G CN`: the tunnel interface isn't created during the GTP-U session establishment process;  
